@@ -12,11 +12,33 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+You will also need to run a local version of the [Personalizer API](https://github.com/DTS-STN/Personalizer-API). Once downloaded create a ```.env``` file in the root directory and add the following:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+NODE_ENV=dev
+PORT=3008
+PERSONALIZER_SERVICE_KEY=[PUT SERVICE KEY HERE]
+PERSONALIZER_BASE_URL=[PUT BASE URL HERE]
+ACCESS_TOKEN_SECRET=[PUT TOKEN HERE]
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Now run the following command:
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:3008/api-docs](http://localhost:3008/api-docs) with your browser to see the result.
+
+If you receive an error with the code ```EADDRINUSE``` then the port is in use and needs to be changed. To fix this find an open port and update the ```PORT``` section of the ```.env``` file as seen above.
+
+If you do change the port you will also need to update the ```.env.development``` file in the Personalizer repo as such:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:[NEW PORT HERE]
+```
 
 ## Learn More
 
