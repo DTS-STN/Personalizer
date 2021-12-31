@@ -13,16 +13,15 @@ export async function reward(eventId, errorCallback) {
     headers.append("Content-Type", "application/json");
 
     var apiOptions = {
-        method: 'PUT',
+        method: 'PATCH',
         headers,
         body: JSON.stringify({
-            "eventId": eventId,
             "score": 1
         }),
     };
 
     try {
-        let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/recommendation/reward`, apiOptions);
+        let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/recommendation/reward/${eventId}`, apiOptions);
         response = await response.json();
         return response;
     } catch (error) {
